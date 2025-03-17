@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import pygame
+from asteroid import Asteroid
 import constants
 from player import Player
 
@@ -13,6 +14,9 @@ def main() -> None:
 
     updatable_group = pygame.sprite.Group()
     drawable_group = pygame.sprite.Group()
+    asteroid_group = pygame.sprite.Group()
+
+    Asteroid.containers = updatable_group, drawable_group, asteroid_group
 
     player.containers = updatable_group, drawable_group
 

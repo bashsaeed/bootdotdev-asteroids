@@ -8,6 +8,9 @@ class Player(CircleShape):
         super().__init__(x, y, constants.PLAYER_RADIUS)
         self.rotation = 0
 
+    def draw(self, screen) -> None:
+        pygame.draw.polygon(screen, color="white", points=self.triangle(), width=2)
+
     def triangle(self) -> list:
         forward = pygame.Vector2(0, 1).rotate(self.rotation)
         right = pygame.Vector2(0, 1).rotate(self.rotation + 90) * self.radius / 1.5
@@ -15,9 +18,6 @@ class Player(CircleShape):
         b = self.position - forward * self.radius - right
         c = self.position - forward * self.radius + right
         return [a, b, c]
-
-    def draw(self, screen) -> None:
-        pygame.draw.polygon(screen, color="white", points=self.triangle(), width=2)
 
     def update(self, dt) -> None:
         keys = pygame.key.get_pressed()

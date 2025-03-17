@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import sys
 import pygame
 import constants
 from asteroid import Asteroid
@@ -30,6 +31,11 @@ def main() -> None:
                 return
 
         updatable_group.update(dt)
+
+        for asteroid in asteroid_group:
+            if asteroid.collides_with(player):
+                print("Game over!")
+                sys.exit()
 
         screen.fill("black")
 
